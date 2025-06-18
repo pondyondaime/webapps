@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: airegistryppp.azurecr.io/${{ secrets.ACR_USERNAME }}/sample-app-aoai-chatgpt:${{ github.sha }}
+        tags: airegistryppp.azurecr.io/mytest/sample-app-aoai-chatgpt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'chatbotpond'
         slot-name: 'production'
         publish-profile: ${{ secrets.PUBLISHPROFILE }}
-        images: 'airegistryppp.azurecr.io/${{ secrets.ACR_USERNAME }}/sample-app-aoai-chatgpt:${{ github.sha }}'
+        images: 'airegistryppp.azurecr.io/mytest/sample-app-aoai-chatgpt:${{ github.sha }}'
