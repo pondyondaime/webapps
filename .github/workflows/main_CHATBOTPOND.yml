@@ -14,6 +14,9 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
+    - name: List all files recursively
+      run: ls -R
+      
     - name: Verify Dockerfile exists
       run: ls -la ./Dockerfile
 
