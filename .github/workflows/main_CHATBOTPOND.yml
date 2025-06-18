@@ -18,7 +18,7 @@ jobs:
       run: ls -R
       
     - name: Verify Dockerfile exists
-      run: ls -la ./Dockerfile
+      run: ls -la ./WebApp.Dockerfile
 
     - uses: actions/checkout@v2
 
