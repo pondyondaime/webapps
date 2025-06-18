@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: sampleappaoaichatgpt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a99ebb0b147b4cfc93fbc58ca2c71aca }}/sample-app-aoai-chatgpt:${{ github.sha }}
+        tags: sampleappaoaichatgpt.azurecr.io/${{ secrets.ACR_USERNAME }}/sample-app-aoai-chatgpt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'CHATBOTPOND'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_17ea745431574338bc15344e8a9ccb88 }}
-        images: 'sampleappaoaichatgpt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a99ebb0b147b4cfc93fbc58ca2c71aca }}/sample-app-aoai-chatgpt:${{ github.sha }}'
+        images: 'sampleappaoaichatgpt.azurecr.io/${{ secrets.ACR_USERNAME }}/sample-app-aoai-chatgpt:${{ github.sha }}'
