@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'CHATBOTPOND'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_17ea745431574338bc15344e8a9ccb88 }}
+        publish-profile: ${{ secrets.PUBLISHPROFILE }}
         images: 'sampleappaoaichatgpt.azurecr.io/${{ secrets.ACR_USERNAME }}/sample-app-aoai-chatgpt:${{ github.sha }}'
