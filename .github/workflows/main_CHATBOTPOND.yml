@@ -14,6 +14,9 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
+    - name: Verify Dockerfile exists
+      run: ls -la ./Dockerfile
+
     - uses: actions/checkout@v2
 
     - name: Set up Docker Buildx
