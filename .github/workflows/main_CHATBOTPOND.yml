@@ -14,15 +14,7 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
-
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: List all files recursively
-      run: ls -R
-      
-    - name: Verify Dockerfile exists
-      run: ls -la ./Dockerfile
+    - uses: actions/checkout@v2
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -31,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://airegistryppp.azurecr.io/
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_1e10cc9b46d44a41aa4648c595c93609 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_3ecc2929a68f43168ae4e18e237438b5 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: airegistryppp.azurecr.io/mytest/sample-app-aoai-chatgpt:${{ github.sha }}
+        tags: airegistryppp.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1e10cc9b46d44a41aa4648c595c93609 }}/mytest/sample-app-aoai-chatgpt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -53,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'chatbotpond'
+        app-name: 'CHATBOTPOND'
         slot-name: 'production'
-        publish-profile: ${{ secrets.PUBLISHPROFILE }}
-        images: 'airegistryppp.azurecr.io/mytest/sample-app-aoai-chatgpt:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f71deed666543f090e7581a1e41842c }}
+        images: 'airegistryppp.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_1e10cc9b46d44a41aa4648c595c93609 }}/mytest/sample-app-aoai-chatgpt:${{ github.sha }}'
